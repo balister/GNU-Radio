@@ -221,6 +221,7 @@ namespace gr {
     }
     bool empty_p() {
       bool rv = true;
+      gr::thread::scoped_lock guard(mutex);
       BOOST_FOREACH(msg_queue_map_t::value_type &i, msg_queue) {
         rv &= msg_queue[i.first].empty();
       }
@@ -233,6 +234,7 @@ namespace gr {
     }
     bool empty_handled_p() {
       bool rv = true;
+      gr::thread::scoped_lock guard(mutex);
       BOOST_FOREACH(msg_queue_map_t::value_type &i, msg_queue) {
         rv &= empty_handled_p(i.first);
       }
@@ -241,6 +243,7 @@ namespace gr {
 
     //! How many messages in the queue?
     size_t nmsgs(pmt::pmt_t which_port) {
+      gr::thread::scoped_lock guard(mutex);
       if(msg_queue.find(which_port) == msg_queue.end())
         throw std::runtime_error("port does not exist!");
       return msg_queue[which_port].size();
