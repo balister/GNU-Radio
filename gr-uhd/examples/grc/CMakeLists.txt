@@ -22,6 +22,7 @@ install(
     uhd_const_wave.grc
     uhd_dpsk_mod.grc
     uhd_fft.grc
+    uhd-qtgui-simple.grc
     uhd_rx_dpsk.grc
     uhd_two_tone_loopback.grc
     uhd_tx_dpsk.grc
